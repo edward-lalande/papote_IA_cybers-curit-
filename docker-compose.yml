@@ -1,0 +1,12 @@
+services:
+  papote:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - papote-data:/app/data
+      - papote-uploads:/app/uploads
+
+volumes:
+  papote-data:
+  papote-uploads:

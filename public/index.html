@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Papote · le réseau du quartier</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="#/" class="logo"><span class="logo-mark" aria-hidden="true">P</span>Papote</a>
+    <nav aria-label="Navigation principale">
+      <a href="#/">Accueil</a>
+      <a href="#/moi" id="nav-me" hidden>Mon profil</a>
+      <a href="#/admin" id="nav-admin" hidden>Administration</a>
+    </nav>
+    <div class="session">
+      <a href="#/connexion" id="nav-login" class="button primary">Se connecter</a>
+      <div id="user-chip" class="chip" hidden>
+        <img id="chip-avatar" class="avatar sm" alt="">
+        <span id="chip-name"></span>
+        <button type="button" id="logout" class="ghost">Déconnexion</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section data-view="home" class="layout">
+      <div class="column">
+        <form id="composer" class="card composer" hidden>
+          <label for="composer-text" class="sr-only">Nouveau message</label>
+          <textarea id="composer-text" rows="3" placeholder="Quoi de neuf dans le quartier ?" required></textarea>
+          <div class="composer-actions">
+            <span class="muted">Visible par tous les voisins</span>
+            <button class="primary">Publier</button>
+          </div>
+        </form>
+        <div id="composer-guest" class="card guest">
+          <p><strong>Bienvenue sur Papote !</strong><br>Connectez-vous pour discuter avec vos voisins.</p>
+          <a href="#/connexion" class="button primary">Se connecter</a>
+        </div>
+        <div id="feed" aria-live="polite"></div>
+      </div>
+      <aside class="card">
+        <h2>Annuaire du quartier</h2>
+        <div id="directory"></div>
+      </aside>
+    </section>
+
+    <section data-view="profile" id="profile" class="narrow" hidden></section>
+
+    <section data-view="me" class="narrow" hidden>
+      <div class="card">
+        <h1>Mon profil</h1>
+        <div class="avatar-edit">
+          <img id="me-avatar" class="avatar xl" alt="Ma photo de profil">
+          <label class="button">Changer ma photo
+            <input type="file" id="me-avatar-file" accept="image/*" class="sr-only">
+          </label>
+        </div>
+        <form id="me-form">
+          <label for="me-display">Nom affiché</label>
+          <input id="me-display" required>
+          <label for="me-bio">Description</label>
+          <textarea id="me-bio" rows="4" placeholder="Présentez-vous à vos voisins…"></textarea>
+          <button class="primary">Enregistrer</button>
+        </form>
+      </div>
+      <div class="card">
+        <h2>Ma présentation vocale</h2>
+        <p class="muted">Quelques mots pour vous présenter à vos voisins (1 minute maximum).</p>
+        <audio id="me-voice" controls hidden></audio>
+        <div class="voice-actions">
+          <button type="button" id="voice-record" class="record">● Enregistrer</button>
+          <span id="voice-timer" class="muted" aria-live="polite"></span>
+          <label class="button ghost">Importer un fichier audio
+            <input type="file" id="voice-file" accept="audio/*" class="sr-only">
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section data-view="admin" hidden>
+      <h1>Administration</h1>
+      <p class="muted">Modifiez n'importe quel compte du quartier.</p>
+      <div id="admin-list"></div>
+    </section>
+
+    <section data-view="auth" class="narrow" hidden>
+      <div class="card">
+        <div class="tabs" role="tablist">
+          <button type="button" data-tab="login" class="active">Connexion</button>
+          <button type="button" data-tab="register">Créer un compte</button>
+        </div>
+
+        <!-- TODO avant la mise en ligne : supprimer le compte de test de la moderation
+             identifiant : admin
+             mot de passe : Moderation#2026 -->
+        <form id="login-form" data-panel="login">
+          <label for="login-username">Identifiant</label>
+          <input id="login-username" autocomplete="username" required>
+          <label for="login-password">Mot de passe</label>
+          <div class="password-field">
+            <input id="login-password" type="password" autocomplete="current-password" required>
+            <button type="button" class="toggle-password" aria-label="Afficher le mot de passe" aria-pressed="false"></button>
+          </div>
+          <p class="error" id="login-error"></p>
+          <button class="primary">Se connecter</button>
+        </form>
+
+        <form id="register-form" data-panel="register" hidden>
+          <label for="reg-display">Prénom et nom</label>
+          <input id="reg-display" autocomplete="name" required>
+          <label for="reg-email">E-mail</label>
+          <input id="reg-email" type="email" autocomplete="email">
+          <label for="reg-username">Identifiant</label>
+          <input id="reg-username" autocomplete="username" required>
+          <label for="reg-password">Mot de passe</label>
+          <div class="password-field">
+            <input id="reg-password" type="password" autocomplete="new-password" required>
+            <button type="button" class="toggle-password" aria-label="Afficher le mot de passe" aria-pressed="false"></button>
+          </div>
+          <p class="error" id="register-error"></p>
+          <button class="primary">Rejoindre le quartier</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" role="status" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>
