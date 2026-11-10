@@ -33,6 +33,44 @@ Pour chaque faille relevée, l'équipe propose et écrit elle-même une correcti
 **Contrôle croisé (environ 15 min)**
 Une équipe tente de rejouer les attaques sur le projet d'une autre équipe. Si une faille est encore exploitable, elle n'est pas encore corrigée.
 
+## Lancer le projet
+
+### 1. Installer et démarrer Docker
+
+- **Windows / macOS** : installer [Docker Desktop](https://www.docker.com/products/docker-desktop/), puis **le lancer** et attendre qu'il indique que Docker tourne (icône de baleine dans la barre des tâches ou la barre de menus). Sous Windows, accepter l'installation de WSL 2 si Docker Desktop la propose, puis redémarrer l'ordinateur si demandé.
+- **Linux** : installer [Docker Engine](https://docs.docker.com/engine/install/) avec le plugin Docker Compose.
+
+Docker Desktop doit rester ouvert pendant tout l'atelier.
+
+### 2. Ouvrir un terminal dans le dossier du projet
+
+Le terminal est une fenêtre où l'on tape des commandes au clavier.
+
+- **Windows** : ouvrir le dossier du projet dans l'Explorateur de fichiers, cliquer dans la barre d'adresse en haut, taper `powershell` puis appuyer sur `Entrée`. Une fenêtre PowerShell s'ouvre directement dans le bon dossier.
+  *(Autre méthode : clic droit dans le dossier → « Ouvrir dans le Terminal ».)*
+- **macOS** : ouvrir l'application **Terminal** (`Cmd+Espace`, taper « Terminal »), écrire `cd ` (avec un espace), glisser le dossier du projet dans la fenêtre, puis appuyer sur `Entrée`.
+- **Linux** : clic droit dans le dossier → « Ouvrir dans un terminal », ou `cd chemin/vers/papote-v2`.
+
+Pour vérifier qu'on est au bon endroit, taper `ls` (ou `dir` sous Windows) : on doit voir les fichiers `docker-compose.yml` et `README.md`.
+
+### 3. Lancer le site
+
+Dans le terminal, taper (la commande est la même sous Windows, macOS et Linux) :
+
+```bash
+docker compose up --build
+```
+
+Le premier lancement prend une ou deux minutes. Quand le défilement s'arrête, ouvrir <http://localhost:3000> dans un navigateur.
+
+Laisser ce terminal ouvert : fermer la fenêtre arrête le site.
+
+### Commandes utiles
+
+- **Arrêter** : `Ctrl+C` dans le terminal (aussi sous macOS), ou `docker compose down` depuis un autre terminal.
+- **Après une correction du code** : relancer `docker compose up --build` pour que la modification soit prise en compte.
+- **Repartir de zéro** (base de données et images envoyées effacées) : `docker compose down -v` puis `docker compose up --build`.
+
 ## Fiche de synthèse (à remplir par équipe)
 
 1. Les failles trouvées, décrites en langage courant.
