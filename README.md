@@ -1,4 +1,4 @@
-# Sujet : « Pirate le profil d'Edward »
+# Pirate le profil d'Edward
 
 ## Contexte
 
