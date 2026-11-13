@@ -93,5 +93,3 @@ Discussion collective autour de quelques questions :
 - Qu'est-ce que ça change de savoir qu'un inconnu peut utiliser les mêmes outils contre un vrai compte ?
 - Comment utiliser l'IA avec ses enfants : comme un raccourci, ou comme un tuteur qui fait réfléchir ?
 - Quels réflexes retenir pour la famille (mots de passe, liens, sites douteux, photos partagées) ?
-
-**Message clé à faire passer :** l'IA accélère autant l'attaquant que le défenseur, mais comprendre reste le meilleur rempart.
